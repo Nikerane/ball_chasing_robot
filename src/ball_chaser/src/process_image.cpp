@@ -29,33 +29,37 @@ void process_image_callback(const sensor_msgs::Image img)
     // Depending on the white ball position, call the drive_bot function and pass velocities to it
     // Request a stop when there's no white ball seen by the camera
 	
-    for (int i = 0; i < img.height; i++) 
-    {
-	    for (int j = 0; j < img.step; j++) 
-        {
-        	int position_index = i * img.step + j;
-        	if (img.data[position_index] == white_pixel && 
-			    img.data[position_index+1] == white_pixel &&
-			    img.data[position_index+2] == white_pixel) 
-                
-                {
+    for (int i = 0; i < img.height; i++) {
+	    for (int j = 0; j < img.step; j++) {
+        	int pos_index = i * img.step + j;
+        	if (img.data[pos_index] == white_pixel && 
+			    img.data[pos_index+1] == white_pixel &&
+			    img.data[pos_index+2] == white_pixel) {
 				
-			        if((float)j/img.step <= 0.33)
-                     {
-				        drive_robot(0.0, 0.5);  // move left               
-            		    } 
-                    else if ((float)j/img.step > 0.67)
-                     {
-				        drive_robot(0.0, -0.5);  // move right 
-			            }       
-                    else {
+                
+                ROS_INFO("white ball detected ");
+
+			    if((float)j/img.step <= 0.33) {
+                    ROS_INFO("Command to turn left");
+				    drive_robot(0.0, 0.25);  // turn left               
+            	}   
+                else if ((float)j/img.step > 0.67) {
+                        ROS_INFO("Command to turn right");
+				        drive_robot(0.0, -0.25);  // turn right 
+			        } 
+                else {
+                        ROS_INFO("Command to move forward");
 				        drive_robot(1.0, 0.0); // move straight
 			        }
-			        return;
-		        }
+            
+			
+		    }
+            
 	    }
     }
+
     drive_robot(0.0, 0.0);
+
     return;
 }
 
