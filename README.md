@@ -8,7 +8,13 @@ In this project ROS AMCL package is used to localize a mobile robot inside a map
 
 * Create a ROS package that launches a custom robot model in a custom Gazebo world  
 * Utilize the ROS AMCL package and the Tele-Operation / Navigation Stack to localize the robot  
-* Explore, add, and tune specific parameters corresponding to each package to achieve the best possible localization results  
+* Explore, add, and tune specific parameters corresponding to each package to achieve the best possible localization results
+
+
+https://github.com/Nikerane/ball_chasing_robot/assets/61742806/2c3d48ee-faba-4f9f-987f-7fc050e735b6
+
+
+   
 ## Prerequisites/Dependencies  
 * Gazebo >= 7.0  
 * ROS Kinetic  
